@@ -1,0 +1,22 @@
+.review_card_container {
+    box-sizing: border-box;
+    margin: 15px 0;
+    padding: 25px;
+    width: 800px;
+    border-radius: 10px;
+    -webkit-box-shadow: 10px 10px 30px -15px rgba(143,143,143,0.5);
+    -moz-box-shadow: 10px 10px 30px -15px rgba(143,143,143,0.5);
+    box-shadow: 10px 10px 30px -15px rgba(143,143,143,0.5);
+    border: 1px solid rgba(143,143,143,0.5);
+}
+
+.review_card_title {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.review_card_desc {
+    font-size: 12px;
+    padding : 5px 0;
+    color: #A7A7A7;
+}

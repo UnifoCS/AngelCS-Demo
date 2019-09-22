@@ -1,0 +1,9 @@
+.dashboard_container {
+    background-color: #FFF;
+    padding: 35px;
+    width: 80%;
+}
+
+.dashboard_content_container {
+    padding: 10px;
+}

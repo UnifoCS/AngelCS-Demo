@@ -1,0 +1,16 @@
+.App {
+  display: flex;
+  flex-direction: row;
+}
+
+h2 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 21px;
+}
+
+.row_align {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
