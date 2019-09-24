@@ -10,7 +10,7 @@ export default class Sidebar extends React.Component {
     render() {
         return(
             <div className="sidebar_container">
-                <Profile name="김아무개" position="CS Manager"/>
+                <Profile name="유니폭스" position="CS Manager"/>
                 <nav className="sidebar_nav">
                     <p className="sidebar_nav_title">Menu</p>
                     <ul className="sidebar_menu">

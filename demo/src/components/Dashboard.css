@@ -1,9 +1,11 @@
 .dashboard_container {
+    display: flex;
     background-color: #FFF;
     padding: 35px;
     width: 80%;
 }
 
 .dashboard_content_container {
+    flex: 1;
     padding: 10px;
 }

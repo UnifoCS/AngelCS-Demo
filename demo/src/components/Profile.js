@@ -1,17 +1,19 @@
 import React from 'react';
 import './Profile.css';
 
-export default function Profile(name, position) {
-    console.log(name, position);
+export default function Profile(props) {
+    const name = props.name;
+    const position = props.position;
+
     return (
         <div className="profile_container">
             <div className="profile_photo">
             </div>
             <div className="name">
-                김아무개
+                {name}
             </div>
             <div className="position">
-                CS Manager
+                {position}
             </div>
         </div>
     );

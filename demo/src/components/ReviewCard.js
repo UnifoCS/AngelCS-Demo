@@ -1,12 +1,18 @@
 import React from 'react';
+import Tag from './Tag';
 import './ReviewCard.css';
 
-export default function ReviewCard(title) {
+export default function ReviewCard(tag) {
+    const tagName = tag.tag;
     return (
         <div className="review_card_container">
             <div className="review_card_title">
                 Seah Choi
+                <div className="review_card_subtitle">
+                    구글플레이스토어 / 3점
+                </div>
             </div>
+            <Tag name={tagName}/>
             <div className="review_card_desc">
                 현재 130레벨까지 키운 유저입니다. 우선 아기자기하고 나름 중독성있는 괜찮은 게임이라 생각됩니다. 다만 아쉬운점 몇가지만 끄적여보겠습니다.
                 우선 등급업에 대한 광고시청은 너무 과하다생각됩니다. 등급업만이라도 광고대신 골드로 대체가 되어야될거같습니다 광고가 너무 많아요.
