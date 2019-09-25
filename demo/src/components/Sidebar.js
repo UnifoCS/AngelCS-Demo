@@ -7,16 +7,27 @@ import './Sidebar.css';
 
 
 export default class Sidebar extends React.Component {
+
     render() {
-        return(
+        let pageNum = this.props.pageNum;
+        if(pageNum === "0") pageNum=null;
+        return (
             <div className="sidebar_container">
-                <Profile name="유니폭스" position="CS Manager"/>
+                <Profile name="김아무개" position="CS Manager"/>
                 <nav className="sidebar_nav">
                     <p className="sidebar_nav_title">Menu</p>
                     <ul className="sidebar_menu">
-                        <li><a href="#" className="active">Home</a></li>
-                        <li><a href="#">Review Managing</a></li>
-                        <li><a href="#">Statistics</a></li>
+                        {pageNum ? (
+                            <div>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/review" className="active">Review Managing</a></li>
+                            </div>
+                        ) : (
+                            <div>
+                                <li><a href="/" className="active">Home</a></li>
+                                <li><a href="/review">Review Managing</a></li>
+                            </div>
+                        )}
                     </ul>
                 </nav>
             </div>
