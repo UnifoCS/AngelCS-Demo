@@ -13,8 +13,6 @@ export default function Tag(props) {
     const colorStyle= {
         backgroundColor: {color}.color,
     };
-    console.log(color);
-    console.log(colorStyle);
 
     return (
         <div className="tag_container" style={colorStyle}>
