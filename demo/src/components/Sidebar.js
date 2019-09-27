@@ -20,11 +20,11 @@ export default class Sidebar extends React.Component {
                         {pageNum ? (
                             <div>
                                 <li><a href="/">Home</a></li>
-                                <li><a href="/review" className="active">Review Managing</a></li>
+                                <li><a href="/review" className="active_nav">Review Managing</a></li>
                             </div>
                         ) : (
                             <div>
-                                <li><a href="/" className="active">Home</a></li>
+                                <li><a href="/" className="active_nav">Home</a></li>
                                 <li><a href="/review">Review Managing</a></li>
                             </div>
                         )}

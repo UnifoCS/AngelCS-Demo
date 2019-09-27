@@ -9,18 +9,17 @@ export default class Dashboard extends React.Component {
         return (
             <div className="dashboard_container">
                 <div className="dashboard_content_container">
+                    <h2>New Reviews</h2>
+                    <ReviewCard tag="긍정"/>
+                    <ReviewCard tag="질문"/>
+                    <ReviewCard tag="부정"/>
+                </div>
+                <div className="dashboard_content_container">
                     <h2>Overview</h2>
                     <div className="row_align">
                         <OverviewCard/>
                     </div>
                 </div>
-                <div className="dashboard_content_container">
-                    <h2>Reviews</h2>
-                    <ReviewCard tag="긍정"/>
-                    <ReviewCard tag="질문"/>
-                    <ReviewCard tag="부정"/>
-                </div>
-
             </div>
         );
     }
