@@ -5,9 +5,13 @@
 .review_man_container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     padding: 45px;
-    width: 80%;
+    width: 100%;
+}
+.review_reply {
+    flex: 5;
+    margin-right: 30px;
 }
 .review_list_container {
     margin-top: 10px;

@@ -32,7 +32,7 @@ export class DetailReviewCard extends React.Component{
         const tagName = this.props.tag;
 
         return (
-            <div className="review_card_container">
+            <div className="review_card_container detail_card">
                 <div className="review_card_title">
                     Seah Choi
                     <div className="review_card_subtitle">

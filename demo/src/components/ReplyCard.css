@@ -1,0 +1,39 @@
+.reply_card_container {
+    box-sizing: border-box;
+    margin: 15px 15px 15px 0;
+    background-color: #FFF;
+    border: 1px solid rgba(143,143,143,0.5);
+    padding: 35px;
+    width: 100%;
+    height: 80vh;
+    border-radius: 10px;
+    -webkit-box-shadow: 5px 5px 10px -1px rgba(143,143,143,0.1);
+    -moz-box-shadow: 5px 5px 10px -1px rgba(143,143,143,0.1);
+    box-shadow: 5px 5px 10px -1px rgba(143,143,143,0.1);
+
+}
+
+.reply_card_review {
+    border-bottom: 1px solid rgba(143,143,143,0.5);
+    padding-bottom: 20px;
+}
+
+.reply_card_title {
+    font-size: 20px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.reply_card_subtitle {
+    font-size: 14px;
+    color: #777;
+    margin-left: 10px;
+    padding-top: 3px;
+}
+
+.reply_card_desc {
+    line-height: 1.8;
+    font-size: 14px;
+    padding : 5px 0;
+}
