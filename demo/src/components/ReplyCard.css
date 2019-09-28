@@ -37,3 +37,44 @@
     font-size: 14px;
     padding : 5px 0;
 }
+
+.reply_card_editor {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.reply_card_editor>textarea {
+    resize: none;
+    outline: none;
+    background-color: #F7F7F7;
+    border-radius: 10px;
+    border: none;
+    min-height: 300px;
+    padding: 20px;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.reply_card_editor>Button {
+    margin-top: 35px !important;
+    background-color: #4346E1 !important;
+    color: #FFF !important;
+    width: 80px !important;
+    float: right !important;
+    font-weight: normal !important;
+}
+
+.ui.buttons {
+    margin-bottom: 10px;
+    width: 50%;
+}
+.ui.buttons .button {
+    background-color: #F7F7F7;
+    font-weight: normal;
+}
+
+.ui.buttons .button:hover {
+    background-color: #E7E7E7;
+}

@@ -1,9 +1,49 @@
 import React from 'react';
 import './ReplyCard.css';
 import Tag from "./Tag";
+import { Button } from 'semantic-ui-react'
+
+const templates = {
+    "긍정": "긍정 템플릿",
+    "부정": "부정 템플릿",
+    "질문": "질문 템플릿",
+};
 
 export default class ReplyCard extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            reviewType: this.props.type,
+            template: templates[this.props.type],
+        };
+
+        this._loadTemplate = this._loadTemplate.bind(this);
+        //this.handleClick = this.handleClick.bind(this);
+    }
+
+     _loadTemplate = (e) => {
+        e.preventDefault();
+        const reviewTypeValue = e.target.value;
+        const templateContents = templates[e.target.value];
+
+        this.setState({
+            reviewType: reviewTypeValue,
+            template: templateContents,
+        });
+    };
+
     render() {
+        const ButtonGroup = () => (
+            <Button.Group>
+                <Button onClick={this._loadTemplate} value="긍정">긍정</Button>
+                <Button onClick={this._loadTemplate} value="부정">부정</Button>
+                <Button onClick={this._loadTemplate} value="질문">질문</Button>
+            </Button.Group>
+        );
+
+        const {reviewType} = this.state;
+
         return (
             <div className="reply_card_container">
                 <div className="reply_card_review">
@@ -20,10 +60,13 @@ export default class ReplyCard extends React.Component {
                         둘째 컨텐츠 부족, 닭장에 닭들을 피버시키는 알바라든지 컨베이어벨트 가속화정도가 추가되었으면합니다.
                         게임 자체는 귀엽고, 킬링타임용으로도 훌륭하다고 생각됩니다.
                     </div>
-                </div>
-                <div className="reply_card_editor">
-
-                </div>
+               </div>
+                <form className="reply_card_editor">
+                    <ButtonGroup/>
+                    <textarea value={this.state.template}>
+                    </textarea>
+                    <Button>답변</Button>
+                </form>
             </div>
         );
     }
