@@ -14,24 +14,33 @@ export default class ReplyCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            userName: "Seah Choi",
+
             reviewType: this.props.type,
-            template: templates[this.props.type],
+            value: templates[this.props.type],
         };
 
         this._loadTemplate = this._loadTemplate.bind(this);
+        this._handleChange = this._handleChange.bind(this);
         //this.handleClick = this.handleClick.bind(this);
     }
 
-     _loadTemplate = (e) => {
-        e.preventDefault();
-        const reviewTypeValue = e.target.value;
-        const templateContents = templates[e.target.value];
-
-        this.setState({
-            reviewType: reviewTypeValue,
-            template: templateContents,
-        });
+    _handleChange = (e) => {
+      this.setState({
+          value: e.target.value
+      });
     };
+
+     _loadTemplate = (e) => {
+         e.preventDefault();
+         const reviewTypeValue = e.target.value;
+         const templateContents = templates[e.target.value];
+
+         this.setState({
+             reviewType: reviewTypeValue,
+             value: templateContents,
+         });
+     };
 
     render() {
         const ButtonGroup = () => (
@@ -42,13 +51,12 @@ export default class ReplyCard extends React.Component {
             </Button.Group>
         );
 
-        const {reviewType} = this.state;
-
+        const {userName, value} = this.state;
         return (
             <div className="reply_card_container">
                 <div className="reply_card_review">
                     <div className="reply_card_title">
-                        Seah Choi
+                        {userName}
                         <div className="reply_card_subtitle">
                             구글플레이스토어 / 3점 ・ 답변대기
                         </div>
@@ -60,11 +68,10 @@ export default class ReplyCard extends React.Component {
                         둘째 컨텐츠 부족, 닭장에 닭들을 피버시키는 알바라든지 컨베이어벨트 가속화정도가 추가되었으면합니다.
                         게임 자체는 귀엽고, 킬링타임용으로도 훌륭하다고 생각됩니다.
                     </div>
-               </div>
+                </div>
                 <form className="reply_card_editor">
                     <ButtonGroup/>
-                    <textarea value={this.state.template}>
-                    </textarea>
+                    <textarea name="reply" value={value} onChange={this._handleChange}/>
                     <Button>답변</Button>
                 </form>
             </div>

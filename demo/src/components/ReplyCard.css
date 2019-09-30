@@ -76,5 +76,9 @@
 }
 
 .ui.buttons .button:hover {
+background-color: #E7E7E7;
+}
+
+.ui.buttons .button::selection {
     background-color: #E7E7E7;
 }
