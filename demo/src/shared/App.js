@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Sidebar from '../components/Sidebar';
-import Dashboard from '../components/Dashboard'
 import { Route } from 'react-router-dom';
 import { Home, Review } from '../pages';
 import './App.css';

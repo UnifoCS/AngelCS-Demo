@@ -16,7 +16,14 @@
     -webkit-box-shadow: 15px 15px 30px -15px rgba(143,143,143,0.5);
     -moz-box-shadow: 15px 15px 30px -15px rgba(143,143,143,0.5);
     box-shadow: 15px 15px 30px -15px rgba(143,143,143,0.5);
+    background-color: #EEF;
+    border: 1px solid #EEF;
     cursor: pointer;
+}
+
+.review_card_active {
+    background-color: #EEF;
+    border: 1px solid #EEF;
 }
 
 .review_card_title {
@@ -27,12 +34,22 @@
 }
 
 .review_card_subtitle {
+    width: 300px;
     font-size: 12px;
     color: #777;
     margin-left: 10px;
-    padding-top: 3px;
+    padding-top: 1px;
 }
 
+.tag_list {
+    display: flex;
+    flex-direction: row;
+}
+
+.review_card_desc_title {
+    font-size: 13px;
+    color: #2a2a2a;
+}
 .review_card_desc {
     font-size: 12px;
     padding : 5px 0;

@@ -1,8 +1,5 @@
 import React from 'react';
 import Profile from "./Profile";
-import IosHome from 'react-ionicons/lib/IosHome';
-import IosChatbubbles from 'react-ionicons/lib/IosChatbubbles';
-import IosStats from 'react-ionicons/lib/IosStats';
 import './Sidebar.css';
 
 

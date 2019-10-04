@@ -7,7 +7,7 @@ const tagColor = {
     "질문": "#F8A32E",
 };
 
-export default function Tag(props) {
+export function Tag(props) {
     const name = props.name;
     const color = tagColor[props.name];
     const colorStyle= {
@@ -21,3 +21,14 @@ export default function Tag(props) {
     );
 }
 
+export function BasicTag(props) {
+    const text = props.text;
+
+    return (
+      <div className="tag_container basic_tag">
+          {text}
+      </div>
+    );
+}
+
+export default Tag;
