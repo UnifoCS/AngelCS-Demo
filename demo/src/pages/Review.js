@@ -11,16 +11,10 @@ class Review extends React.Component {
         this.state = {
             tag: "긍정",
             selectedId: 1,
+            isLoaded: false,
         };
         this.handleReviewSelect = this.handleReviewSelect.bind(this);
     }
-
-    handleReviewSelect = (tag, id) => {
-        this.setState({
-            tag: tag,
-            selectedId: id,
-        });
-    };
 
     _renderReviews = () => {
         const reviews = this.state.reviews.map((review) => {
@@ -47,7 +41,18 @@ class Review extends React.Component {
         )
             .then(response => response.json())
             .then(reviewList => reviewList)
-            .catch(err => console.log('err!'));
+            .catch(err => err);
+    };
+
+    _callReviewDetailApi = (id) => {
+        const url = `http://52.79.172.190:8080/review/${id}`;
+        return fetch(url)
+            .then(response => response.json())
+            .then(review => {
+                console.log(review);
+                return review;
+            })
+            .catch(err => err);
     };
 
     _getReviewList = async () => {
@@ -57,8 +62,33 @@ class Review extends React.Component {
         });
     };
 
+    _getReviewDetail = async () => {
+        const review = await this._callReviewDetailApi(this.state.selectedId);
+        this.setState({
+            replyCard: {
+                author: review.author,
+                title: review.title,
+                content: review.content,
+                date: review.created_date,
+                isAggressive: review.is_aggressive,
+                isReplied: review.is_replied,
+                rating: review.rating,
+            },
+            isLoaded: true,
+        });
+    };
+
+    handleReviewSelect = (tag, id) => {
+        this.setState({
+            tag: tag,
+            selectedId: id,
+        });
+        this._getReviewDetail();
+    };
+
     render() {
-        const tag = this.state.tag;
+        const {tag, replyCard, isLoaded} = this.state;
+        console.log(this.state);
         const panes = [
             {
                 menuItem: '답변대기 (30건)',
@@ -83,7 +113,12 @@ class Review extends React.Component {
                 <div className="review_man_container">
                     <div className="review_reply">
                         <h2>Reply</h2>
-                        <ReplyCard tag={tag}></ReplyCard>
+                        {isLoaded?(
+                            <ReplyCard tag={tag} replyCard={replyCard}></ReplyCard>
+                        ):(
+                            "리뷰를 가져오는 중입니다."
+                        )}
+
                     </div>
                     <div className="review_list">
                         <h2>Reviews</h2>
@@ -96,6 +131,7 @@ class Review extends React.Component {
 
     componentDidMount() {
         this._getReviewList();
+        this._getReviewDetail();
     }
 }
 
