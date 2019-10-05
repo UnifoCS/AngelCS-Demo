@@ -10,19 +10,23 @@ class Review extends React.Component {
         super(props);
         this.state = {
             tag: "긍정",
+            selectedId: 1,
         };
         this.handleReviewSelect = this.handleReviewSelect.bind(this);
     }
 
-    handleReviewSelect = (tag) => {
+    handleReviewSelect = (tag, id) => {
         this.setState({
-            tag: tag
+            tag: tag,
+            selectedId: id,
         });
     };
 
     _renderReviews = () => {
         const reviews = this.state.reviews.map((review) => {
             return <DetailReviewCard key={review.id}
+                                     id={review.id}
+                                     selectedId={this.state.selectedId}
                                      author={review.author}
                                      title={review.title}
                                      date={review.created_date}
@@ -35,7 +39,6 @@ class Review extends React.Component {
                                      onReviewSelect={this.handleReviewSelect}/>
         });
 
-        console.log(this.state.reviews);
         return reviews;
     };
 

@@ -27,19 +27,23 @@ export class DetailReviewCard extends React.Component{
     constructor(props) {
         super(props);
         this.handleReviewClick = this.handleReviewClick.bind(this);
+        this.state = {
+            cardSelected: false,
+        }
     }
 
     handleReviewClick = (e) => {
-        this.props.onReviewSelect(this.props.tag);
+        console.log(this.props);
+        this.props.onReviewSelect(this.props.tag, this.props.id);
     };
 
     render() {
-        const {author, title, rating, isAggressive, isReplied, tag, content} = this.props;
+        const {author, id, selectedId, title, rating, isAggressive, isReplied, tag, content} = this.props;
         const date = this.props.date.split('T');
         const basicTagText = rating+"점";
 
         return (
-            <div className="review_card_container detail_card" onClick={this.handleReviewClick}>
+            <div className={id===selectedId?"review_card_container detail_card review_card_active":"review_card_container detail_card"} onClick={this.handleReviewClick}>
                 <div className="review_card_title">
                     {author}
                     <div className="review_card_subtitle">
