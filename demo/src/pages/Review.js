@@ -4,20 +4,21 @@ import Sidebar from "../components/Sidebar";
 import {DetailReviewCard} from "../components/ReviewCard";
 import {Tab} from 'semantic-ui-react'
 import ReplyCard from "../components/ReplyCard";
+import update from 'immutability-helper';
 
 class Review extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tag: "긍정",
             selectedId: 1,
             isLoaded: false,
         };
         this.handleReviewSelect = this.handleReviewSelect.bind(this);
+        this.handleReviewReply = this.handleReviewReply.bind(this);
     }
 
-    _renderReviews = () => {
-        const reviews = this.state.reviews.map((review) => {
+    _renderReviews = (renderReviews) => {
+        const reviews = renderReviews.map((review) => {
             return <DetailReviewCard key={review.id}
                                      id={review.id}
                                      selectedId={this.state.selectedId}
@@ -36,19 +37,26 @@ class Review extends React.Component {
         return reviews;
     };
 
+    _renderRepliedReviews = (isReplied) => {
+        let reviews = this.state.reviews.filter((review) => review.is_replied===isReplied);
+        return this._renderReviews(reviews);
+    };
+
     _renderReplyCard = () => {
-        const {author, title, content, date, isAggressive, isReplied, rating} = this.state.replyCard;
+        const {id, author, title, content, date, isAggressive, isReplied, rating} = this.state.replyCard;
         const tag = this.state.tag;
 
         return (
-                <ReplyCard author={author}
+                <ReplyCard id={id}
+                           author={author}
                            tag={tag}
                            title={title}
                            content={content}
                            date={date}
                            isAggressive={isAggressive}
                            isReplied={isReplied}
-                           rating={rating}/>
+                           rating={rating}
+                           onReviewReply={this.handleReviewReply}/>
        );
     };
 
@@ -77,10 +85,12 @@ class Review extends React.Component {
         });
     };
 
+    //legacy
     _getReviewDetail = async () => {
         const review = await this._callReviewDetailApi(this.state.selectedId);
         this.setState({
             replyCard: {
+                id: review.id,
                 author: review.author,
                 title: review.title,
                 content: review.content,
@@ -89,6 +99,7 @@ class Review extends React.Component {
                 isReplied: review.is_replied,
                 rating: review.rating,
             },
+            tag: "긍정",
             isLoaded: true,
         });
     };
@@ -96,6 +107,7 @@ class Review extends React.Component {
     handleReviewSelect = (review) => {
         this.setState({
             replyCard: {
+                id: review.id,
                 author: review.author,
                 title: review.title,
                 content: review.content,
@@ -109,21 +121,39 @@ class Review extends React.Component {
         });
     };
 
+    handleReviewReply = (targetId, value) => {
+        const targetIndex = this.state.reviews.findIndex((review) => review.id===targetId);
+        const selectedId = this.state.reviews.filter(r => r.is_replied===false)[1].id;
+
+        this.setState({
+            reviews: update(
+                this.state.reviews,
+                {
+                    [targetIndex]: {
+                        is_replied: {$set: true},
+                        reply: {$set: value}
+                    }
+            }),
+            selectedId: selectedId,
+        });
+    };
+
     render() {
         const {isLoaded} = this.state;
         const panes = [
             {
-                menuItem: '답변대기 (30건)',
+                menuItem: `답변대기`,
                 render: () => {
                     return (<div className="review_list_container">
-                        {this.state.reviews ? this._renderReviews() : "리뷰를 가져오는 중입니다!"}
+                        {this.state.reviews ? this._renderRepliedReviews(false) : "리뷰를 가져오는 중입니다!"}
                     </div>);
                 },
             },
             {
-                menuItem: '답변완료 (50건)',
+                menuItem: `답변완료`,
                 render: () => {
                     return (<div className="review_list_container">
+                        {this.state.reviews ? this._renderRepliedReviews(true) : "리뷰를 가져오는 중입니다!"}
                     </div>);
                 },
             },

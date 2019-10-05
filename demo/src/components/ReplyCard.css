@@ -124,6 +124,10 @@
     font-weight: normal !important;
 }
 
+.button.blue:hover {
+    background-color: #3336D0 !important;
+}
+
 .ui.buttons {
     margin-bottom: 10px;
     width: 40%;

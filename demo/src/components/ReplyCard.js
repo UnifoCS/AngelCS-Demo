@@ -40,7 +40,6 @@ export default class ReplyCard extends React.Component {
 
      _loadTemplate = (e) => {
          e.preventDefault();
-
          this.setState({
              reviewType: e.target.value,
              value: templates[e.target.value],
@@ -65,6 +64,8 @@ export default class ReplyCard extends React.Component {
             </div>
         );
     };
+
+
 
     render() {
         const {reviewType, isFiltered} = this.state;
@@ -106,11 +107,15 @@ export default class ReplyCard extends React.Component {
                         {content}
                     </div>
                 </div>
-                <form className="reply_card_editor">
+                <div className="reply_card_editor" >
                     <ButtonGroup/>
-                    <textarea name="reply" value={value} onChange={this._handleChange}/>
-                    <Button>답변</Button>
-                </form>
+                    <div className="reply_editor">
+                        <textarea name="reply" value={value} onChange={this._handleChange}/>
+                    </div>
+                    <div className="right_align">
+                        <Button onClick={()=>{this.props.onReviewReply(this.props.id, value);}} className="blue">답변</Button>
+                    </div>
+                </div>
             </div>
         );
     }
