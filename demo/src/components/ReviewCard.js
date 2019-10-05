@@ -33,8 +33,7 @@ export class DetailReviewCard extends React.Component{
     }
 
     handleReviewClick = (e) => {
-        console.log(this.props);
-        this.props.onReviewSelect(this.props.tag, this.props.id);
+        this.props.onReviewSelect(this.props);
     };
 
     render() {

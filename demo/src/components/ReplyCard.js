@@ -4,17 +4,18 @@ import {Tag, BasicTag} from "./Tag";
 import { Button } from 'semantic-ui-react'
 
 const templates = {
-    "긍정": "긍정 템플릿",
-    "부정": "부정 템플릿",
+    "긍정": "Thank you [name], We will keep doing our best :)",
+    "부정": "Sorry [name], We will try more for better service.",
     "질문": "질문 템플릿",
     "제안": "제안 템플릿",
 };
+
+const tagList = ["긍정", "부정", "질문", "제안"];
 
 export default class ReplyCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: "Seah Choi",
             reviewType: this.props.tag,
             value: templates[this.props.tag],
         };
@@ -32,28 +33,34 @@ export default class ReplyCard extends React.Component {
 
      _loadTemplate = (e) => {
          e.preventDefault();
-         const reviewTypeValue = e.target.value;
-         const templateContents = templates[e.target.value];
 
          this.setState({
-             reviewType: reviewTypeValue,
-             value: templateContents,
+             reviewType: e.target.value,
+             value: templates[e.target.value],
+         });
+     };
+
+     componentWillReceiveProps(nextProps, nextContext) {
+         this.setState({
+             reviewType: nextProps.tag,
+             value: templates[nextProps.tag],
          });
      };
 
     render() {
-        const {value} = this.state;
-        const {tag} = this.props;
-        const {author, title, content, isReplied, rating, template} = this.props.replyCard;
-        const date = this.props.replyCard.date.split('T');
+        const {value, reviewType} = this.state;
+        const {author, tag, title, content, isAggressive, isReplied, rating} = this.props;
+        const date = this.props.date.split('T');
         const basicTagText = rating+"점";
 
         const ButtonGroup = () => (
             <Button.Group>
-                <Button onClick={this._loadTemplate} value="긍정">긍정</Button>
-                <Button onClick={this._loadTemplate} value="부정">부정</Button>
-                <Button onClick={this._loadTemplate} value="질문">질문</Button>
-                <Button onClick={this._loadTemplate} value="제안">제안</Button>
+                {tagList.map((tag) => {
+                    return <Button onClick={this._loadTemplate}
+                                   value={tag}
+                                   className={reviewType === tag?"tag_button_active":""}>
+                        {tag}</Button>
+                })}
             </Button.Group>
         );
 
@@ -84,5 +91,12 @@ export default class ReplyCard extends React.Component {
                 </form>
             </div>
         );
+    }
+
+    componentDidMount() {
+        this.setState({
+            reviewType: this.props.tag,
+            value: templates[this.props.tag],
+        })
     }
 }

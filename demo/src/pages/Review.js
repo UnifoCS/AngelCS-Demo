@@ -36,6 +36,22 @@ class Review extends React.Component {
         return reviews;
     };
 
+    _renderReplyCard = () => {
+        const {author, title, content, date, isAggressive, isReplied, rating} = this.state.replyCard;
+        const tag = this.state.tag;
+
+        return (
+                <ReplyCard author={author}
+                           tag={tag}
+                           title={title}
+                           content={content}
+                           date={date}
+                           isAggressive={isAggressive}
+                           isReplied={isReplied}
+                           rating={rating}/>
+       );
+    };
+
     _callReviewListApi = () => {
         return fetch('http://52.79.172.190:8080/reviews'
         )
@@ -49,7 +65,6 @@ class Review extends React.Component {
         return fetch(url)
             .then(response => response.json())
             .then(review => {
-                console.log(review);
                 return review;
             })
             .catch(err => err);
@@ -78,12 +93,20 @@ class Review extends React.Component {
         });
     };
 
-    handleReviewSelect = (tag, id) => {
+    handleReviewSelect = (review) => {
         this.setState({
-            tag: tag,
-            selectedId: id,
+            replyCard: {
+                author: review.author,
+                title: review.title,
+                content: review.content,
+                date: review.date,
+                rating: review.rating,
+                isAggressive: review.isAggressive,
+                isReplied: review.isReplied,
+            },
+            tag: review.tag,
+            selectedId: review.id
         });
-        this._getReviewDetail();
     };
 
     render() {
@@ -113,12 +136,7 @@ class Review extends React.Component {
                 <div className="review_man_container">
                     <div className="review_reply">
                         <h2>Reply</h2>
-                        {isLoaded?(
-                            <ReplyCard tag={tag} replyCard={replyCard}></ReplyCard>
-                        ):(
-                            "리뷰를 가져오는 중입니다."
-                        )}
-
+                        {isLoaded? this._renderReplyCard() : "리뷰를 가져오는 중입니다."}
                     </div>
                     <div className="review_list">
                         <h2>Reviews</h2>

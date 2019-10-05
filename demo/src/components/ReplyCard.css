@@ -82,9 +82,10 @@
 }
 
 .ui.buttons .button:hover {
-background-color: #E7E7E7;
+    background-color: #E7E7E7;
 }
 
-.ui.buttons .button::selection {
-    background-color: #E7E7E7;
+.tag_button_active {
+    background-color: #E7E7E7 !important;
+    color: #2a2a2a !important;
 }
