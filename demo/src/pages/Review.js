@@ -110,8 +110,7 @@ class Review extends React.Component {
     };
 
     render() {
-        const {tag, replyCard, isLoaded} = this.state;
-        console.log(this.state);
+        const {isLoaded} = this.state;
         const panes = [
             {
                 menuItem: '답변대기 (30건)',

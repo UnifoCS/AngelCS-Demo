@@ -48,9 +48,10 @@ export default class ReplyCard extends React.Component {
      };
 
     render() {
-        const {value, reviewType} = this.state;
+        const {reviewType} = this.state;
         const {author, tag, title, content, isAggressive, isReplied, rating} = this.props;
         const date = this.props.date.split('T');
+        const value = this.state.value.replace('[name]', author);
         const basicTagText = rating+"점";
 
         const ButtonGroup = () => (
