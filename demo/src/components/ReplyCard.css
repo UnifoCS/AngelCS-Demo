@@ -1,4 +1,7 @@
 .reply_card_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     box-sizing: border-box;
     margin: 15px 15px 15px 0;
     background-color: #FFF;
@@ -84,30 +87,40 @@
 }
 
 .reply_card_editor {
+    height: 100%;
     margin-top: 35px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
 }
 
-.reply_card_editor>textarea {
+.right_align {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.reply_editor {
+    height: 100%;
+}
+
+.reply_card_editor>.reply_editor>textarea {
     resize: none;
+    width: 100%;
     outline: none;
     background-color: #F7F7F7;
     border-radius: 10px;
     border: none;
-    min-height: 300px;
+    min-height: 100%;
     padding: 20px;
     font-size: 15px;
     line-height: 1.8;
 }
 
-.reply_card_editor>Button {
+.reply_card_editor .button.blue{
     margin-top: 35px !important;
     background-color: #4346E1 !important;
     color: #FFF !important;
     width: 80px !important;
-    float: right !important;
     font-weight: normal !important;
 }
 
