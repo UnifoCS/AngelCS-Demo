@@ -96,7 +96,7 @@
 .right_align {
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .reply_editor {
@@ -116,7 +116,7 @@
     line-height: 1.8;
 }
 
-.reply_card_editor .button.blue{
+.button.blue{
     margin-top: 35px !important;
     background-color: #4346E1 !important;
     color: #FFF !important;
