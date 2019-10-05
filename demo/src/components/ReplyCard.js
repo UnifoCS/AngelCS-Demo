@@ -18,6 +18,7 @@ export default class ReplyCard extends React.Component {
         this.state = {
             reviewType: this.props.tag,
             value: templates[this.props.tag],
+            isFiltered: this.props.isAggressive
         };
 
         this._loadTemplate = this._loadTemplate.bind(this);
@@ -29,6 +30,12 @@ export default class ReplyCard extends React.Component {
       this.setState({
           value: e.target.value
       });
+    };
+
+    _toggleFilter = (e) => {
+        this.setState((prevState) => ({
+            isFiltered: !prevState.isFiltered,
+        }));
     };
 
      _loadTemplate = (e) => {
@@ -44,11 +51,23 @@ export default class ReplyCard extends React.Component {
          this.setState({
              reviewType: nextProps.tag,
              value: templates[nextProps.tag],
+             isFiltered: nextProps.isAggressive
          });
      };
 
+    _renderAggressiveInfo = () => {
+        return (
+            <div className="reply_card_info">
+                <p>해당 리뷰는 공격적인 리뷰로 판단되어 필터링 되었습니다.</p>
+                <div className="center_align">
+                    <Button onClick={this._toggleFilter}>리뷰 보기</Button>
+                </div>
+            </div>
+        );
+    };
+
     render() {
-        const {reviewType} = this.state;
+        const {reviewType, isFiltered} = this.state;
         const {author, tag, title, content, isAggressive, isReplied, rating} = this.props;
         const date = this.props.date.split('T');
         const value = this.state.value.replace('[name]', author);
@@ -59,6 +78,7 @@ export default class ReplyCard extends React.Component {
                 {tagList.map((tag) => {
                     return <Button onClick={this._loadTemplate}
                                    value={tag}
+                                   key={tagList.indexOf(tag)}
                                    className={reviewType === tag?"tag_button_active":""}>
                         {tag}</Button>
                 })}
@@ -78,7 +98,8 @@ export default class ReplyCard extends React.Component {
                         <Tag name={tag}/>
                         <BasicTag text={basicTagText}/>
                     </div>
-                    <div className="reply_card_desc">
+                    {isFiltered?this._renderAggressiveInfo():""}
+                    <div className={isFiltered?"reply_card_desc filtered_review":"reply_card_desc"}>
                         <div className="reply_card_desc_title">
                             {title}
                         </div>
@@ -92,12 +113,5 @@ export default class ReplyCard extends React.Component {
                 </form>
             </div>
         );
-    }
-
-    componentDidMount() {
-        this.setState({
-            reviewType: this.props.tag,
-            value: templates[this.props.tag],
-        })
     }
 }

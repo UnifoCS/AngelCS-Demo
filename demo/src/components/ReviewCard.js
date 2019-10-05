@@ -53,7 +53,7 @@ export class DetailReviewCard extends React.Component{
                     <Tag name={tag}/>
                     <BasicTag text={basicTagText}/>
                 </div>
-                <div className="review_card_desc">
+                <div className={isAggressive?"review_card_desc aggressive_review_card":"review_card_desc"}>
                     <div className="review_card_desc_title">
                         {title}
                     </div>

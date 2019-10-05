@@ -44,6 +44,45 @@
     color: #2a2a2a;
 }
 
+.reply_card_info {
+    margin-top: 8px;
+    color: #2a2a2a;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.filtered_review {
+    display:none;
+}
+.reply_card_info p {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.center_align {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.reply_card_info .ui.button {
+    margin: 0 auto;
+    font-size: 14px;
+    padding: 10px 14px;
+    font-weight: normal;
+    background-color: #F0F0F0;
+    -webkit-box-shadow: 5px 5px 10px -1px rgba(143,143,143,0.1);
+    -moz-box-shadow: 5px 5px 10px -1px rgba(143,143,143,0.1);
+    box-shadow: 5px 5px 5px -1px rgba(143,143,143,0.2);
+}
+
+.reply_card_info .ui.button:hover {
+    background-color: #E7E7E7;
+}
+
 .reply_card_editor {
     margin-top: 35px;
     display: flex;
@@ -88,4 +127,8 @@
 .tag_button_active {
     background-color: #E7E7E7 !important;
     color: #2a2a2a !important;
+}
+
+.aggressive_review_card {
+    filter: blur(3px);
 }
