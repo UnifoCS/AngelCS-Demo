@@ -89,6 +89,7 @@ class Review extends React.Component {
     //legacy
     _getReviewDetail = async () => {
         const review = await this._callReviewDetailApi(this.state.selectedId);
+        const reviewTag = review.tags[0]?review.tags[0].name:"긍정";
         this.setState({
             replyCard: {
                 id: review.id,
@@ -101,7 +102,7 @@ class Review extends React.Component {
                 reply: review.reply,
                 rating: review.rating,
             },
-            tag: "긍정",
+            tag: reviewTag,
             isLoaded: true,
         });
     };
@@ -126,9 +127,12 @@ class Review extends React.Component {
 
     handleReviewReply = (targetId, value) => {
         const targetIndex = this.state.reviews.findIndex((review) => review.id===targetId);
-        const selectedIndex = this.state.reviews.filter(r => r.is_replied==false)
-            .findIndex(r => r.id===targetId)+1;
-        const selectedId = this.state.reviews.filter(r => r.is_replied===false)[selectedIndex].id;
+        const waitingReviews = this.state.reviews.filter(r => r.is_replied===false);
+        const selectedIndex = waitingReviews.findIndex(r => r.id===targetId)+1;
+        const selectedReview = waitingReviews[selectedIndex];
+        const reviewTag = selectedReview.tags[0]?selectedReview.tags[0].name:"긍정";
+
+        console.log(selectedReview);
 
         this.setState({
             reviews: update(
@@ -139,7 +143,19 @@ class Review extends React.Component {
                         reply: {$set: value}
                     }
             }),
-            selectedId: selectedId,
+            tag: reviewTag,
+            selectedId: selectedReview.id,
+            replyCard: {
+                id: selectedReview.id,
+                author: selectedReview.author,
+                title: selectedReview.title,
+                content: selectedReview.content,
+                date: selectedReview.created_date,
+                rating: selectedReview.rating,
+                isAggressive: selectedReview.is_aggressive,
+                isReplied: selectedReview.is_replied,
+                reply: selectedReview.reply,
+            },
         });
     };
 
@@ -170,7 +186,7 @@ class Review extends React.Component {
                 <div className="review_man_container">
                     <div className="review_reply">
                         <h2>Reply</h2>
-                        {isLoaded? this._renderReplyCard() : "리뷰를 가져오는 중입니다."}
+                        {isLoaded? this._renderReplyCard() : "답변을 대기중인 리뷰가 없습니다!"}
                     </div>
                     <div className="review_list">
                         <h2>Reviews</h2>
