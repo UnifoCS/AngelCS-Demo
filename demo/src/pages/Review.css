@@ -13,6 +13,10 @@
     flex: 5;
     margin-right: 30px;
 }
+
+.review_list {
+    width: 620px;
+}
 .review_list_container {
     margin-top: 10px;
     width: 101%;
