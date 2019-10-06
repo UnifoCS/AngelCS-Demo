@@ -10,6 +10,7 @@ export default class Sidebar extends React.Component {
         if(pageNum === "0") pageNum=null;
         return (
             <div className="sidebar_container">
+                <div>
                 <Profile name="김아무개" position="CS Manager"/>
                 <nav className="sidebar_nav">
                     <p className="sidebar_nav_title">Menu</p>
@@ -25,6 +26,15 @@ export default class Sidebar extends React.Component {
                                 <li><a href="/review">Review Managing</a></li>
                             </div>
                         )}
+                        <li><a href="#">Setting</a></li>
+                    </ul>
+                </nav>
+                </div>
+                <nav className="sidebar_nav">
+                    <p className="sidebar_nav_title">Opensource</p>
+                    <ul className="sidebar_menu">
+                        <li><a href="#">Contribute</a></li>
+                        <li><a href="https://github.com/UnifoCS/AngelCS-Demo" target="_blank">Github</a></li>
                     </ul>
                 </nav>
             </div>

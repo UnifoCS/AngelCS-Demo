@@ -1,5 +1,5 @@
 .sidebar_container {
-    width: 240px;
+    width: 28vh;
     height: 100vh;
     z-index: 1;
     box-sizing: border-box;
@@ -7,6 +7,10 @@
     -webkit-box-shadow: 8px 0px 25px -20px rgba(143,143,143,1);
     -moz-box-shadow: 8px 0px 25px -20px rgba(143,143,143,1);
     box-shadow: 8px 0px 25px -20px rgba(143,143,143,1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 5vh;
 }
 
 .sidebar_nav {
