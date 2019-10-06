@@ -43,7 +43,7 @@ class Review extends React.Component {
     };
 
     _renderReplyCard = () => {
-        const {id, author, title, content, date, isAggressive, isReplied, rating} = this.state.replyCard;
+        const {id, author, title, content, date, isAggressive, isReplied, reply, rating} = this.state.replyCard;
         const tag = this.state.tag;
 
         return (
@@ -55,6 +55,7 @@ class Review extends React.Component {
                            date={date}
                            isAggressive={isAggressive}
                            isReplied={isReplied}
+                           reply={reply}
                            rating={rating}
                            onReviewReply={this.handleReviewReply}/>
        );
@@ -97,6 +98,7 @@ class Review extends React.Component {
                 date: review.created_date,
                 isAggressive: review.is_aggressive,
                 isReplied: review.is_replied,
+                reply: review.reply,
                 rating: review.rating,
             },
             tag: "긍정",
@@ -115,6 +117,7 @@ class Review extends React.Component {
                 rating: review.rating,
                 isAggressive: review.isAggressive,
                 isReplied: review.isReplied,
+                reply: review.reply,
             },
             tag: review.tag,
             selectedId: review.id
@@ -123,7 +126,9 @@ class Review extends React.Component {
 
     handleReviewReply = (targetId, value) => {
         const targetIndex = this.state.reviews.findIndex((review) => review.id===targetId);
-        const selectedId = this.state.reviews.filter(r => r.is_replied===false)[1].id;
+        const selectedIndex = this.state.reviews.filter(r => r.is_replied==false)
+            .findIndex(r => r.id===targetId)+1;
+        const selectedId = this.state.reviews.filter(r => r.is_replied===false)[selectedIndex].id;
 
         this.setState({
             reviews: update(
