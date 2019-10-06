@@ -39,8 +39,12 @@ class Review extends React.Component {
     };
 
     _renderRepliedReviews = (isReplied) => {
-        if (this.state.allComplete === true) {
-            return "답변을 기다리는 리뷰가 없습니다!";
+        if (this.state.allComplete === true && isReplied===false) {
+            return (
+                <div className="center_align">
+                    답변을 기다리는 리뷰가 없습니다!
+                </div>
+            );
         }
         let reviews = this.state.reviews.filter((review) => review.is_replied === isReplied);
         return this._renderReviews(reviews);
