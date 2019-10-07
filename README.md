@@ -17,7 +17,7 @@
       <img src="https://img.shields.io/badge/demos-🚀-yellow.svg" alt="demos" />
     </a>
     <br />
-    AngelCS는 CS 매니저의 업무 효율을 극대화시켜주는 서비스입니다.
+    AngelCS는 CS 매니저의 업무 효율을 극대화하는 서비스입니다.
     <br />
     Translations: <a href="#">🇬🇧</a>
   </sup>
