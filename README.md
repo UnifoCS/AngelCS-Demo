@@ -25,7 +25,7 @@
   <br />
   <br />
   <br />
-  <pre>yarn start</pre>
+  <pre>cd demo<br/>yarn start</pre>
   <br />
   <br />
 </div>
