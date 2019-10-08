@@ -6,7 +6,7 @@ import './Home.css';
 function Home() {
     return (
         <div className="Home">
-            <Sidebar pageNum="0"></Sidebar>
+            <Sidebar></Sidebar>
             <Dashboard></Dashboard>
         </div>
     );
