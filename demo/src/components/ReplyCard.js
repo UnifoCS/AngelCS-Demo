@@ -7,10 +7,10 @@ const templates = {
     "긍정": "Thank you [name], We will keep doing our best :)",
     "부정": "Sorry [name], We will try more for better service.",
     "질문": "질문 템플릿",
-    "제안": "제안 템플릿",
+    "중립": "Thank you [name], We will keep doing our best :)",
 };
 
-const tagList = ["긍정", "부정", "질문", "제안"];
+const tagList = ["긍정", "부정", "질문", "중립"];
 
 export default class ReplyCard extends React.Component {
     constructor(props) {

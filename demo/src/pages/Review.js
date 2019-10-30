@@ -30,7 +30,7 @@ class Review extends React.Component {
                                      isReplied={review.is_replied}
                                      rating={review.rating}
                                      reply={review.reply}
-                                     tag={review.tags[0] ? review.tags[0].name : "긍정"}
+                                     tag={review.tags[0] ? review.tags[0].name : "중립"}
                                      content={review.content}
                                      onReviewSelect={this.handleReviewSelect}/>
         });
@@ -47,6 +47,7 @@ class Review extends React.Component {
             );
         }
         let reviews = this.state.reviews.filter((review) => review.is_replied === isReplied);
+
         return this._renderReviews(reviews);
     };
 
@@ -90,14 +91,17 @@ class Review extends React.Component {
     _getReviewList = async () => {
         const reviews = await this._callReviewListApi();
         this.setState({
-            reviews
+            reviews,
+            reviewCnt: reviews.length,
+            replyCnt: 0,
         });
     };
 
     //legacy
+    //replyCard state update. **dependency with reply panel**
     _getReviewDetail = async () => {
         const review = await this._callReviewDetailApi(this.state.selectedId);
-        const reviewTag = review.tags[0] ? review.tags[0].name : "긍정";
+        const reviewTag = review.tags ? review.tags[0].name : "중립";
         this.setState({
             replyCard: {
                 id: review.id,
@@ -138,8 +142,14 @@ class Review extends React.Component {
         const waitingReviews = this.state.reviews.filter(r => r.is_replied === false);
         const selectedIndex = waitingReviews.findIndex(r => r.id === targetId) + 1;
 
+        if(this.state.replyCard.isReplied === false) {
+            this.setState((prevState) => ({
+                replyCnt: prevState.replyCnt+1
+            }))
+        }
+
         if (waitingReviews.length <= 1) {
-            this.setState({
+            this.setState((prevState) => ({
                 reviews: update(
                     this.state.reviews,
                     {
@@ -149,16 +159,15 @@ class Review extends React.Component {
                         }
                     }),
                 allComplete: true,
-            });
+            }));
 
             return;
         }
 
-
         const selectedReview = selectedIndex < waitingReviews.length ? waitingReviews[selectedIndex] : waitingReviews[0];
-        const reviewTag = selectedReview.tags[0] ? selectedReview.tags[0].name : "긍정";
+        const reviewTag = selectedReview.tags[0] ? selectedReview.tags[0].name : "중립";
 
-        this.setState({
+        this.setState((prevState) => ({
             reviews: update(
                 this.state.reviews,
                 {
@@ -180,14 +189,14 @@ class Review extends React.Component {
                 isReplied: selectedReview.is_replied,
                 reply: selectedReview.reply,
             },
-        });
+        }));
     };
 
     render() {
-        const {isLoaded} = this.state;
+        const {isLoaded, reviewCnt, replyCnt} = this.state;
         const panes = [
             {
-                menuItem: `답변대기`,
+                menuItem: reviewCnt?`답변대기 (${reviewCnt-replyCnt}개)`:`답변대기`,
                 render: () => {
                     return (
                         <div className="review_list_container">
@@ -197,7 +206,7 @@ class Review extends React.Component {
                 },
             },
             {
-                menuItem: `답변완료`,
+                menuItem: replyCnt?`답변완료 (${replyCnt}개)`:`답변완료 (0개)`,
                 render: () => {
                     return (<div className="review_list_container">
                         {this.state.reviews ? this._renderRepliedReviews(true) : "리뷰를 가져오는 중입니다!"}

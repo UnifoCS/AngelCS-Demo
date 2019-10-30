@@ -5,6 +5,7 @@ const tagColor = {
     "긍정": "#45D582",
     "부정": "#FF3838",
     "질문": "#F8A32E",
+    "중립": "#A7A7A7",
 };
 
 export function Tag(props) {
