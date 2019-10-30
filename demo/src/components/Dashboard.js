@@ -14,7 +14,31 @@ export default class Dashboard extends React.Component {
         };
     }
 
+    _callDashboardApi = () => {
+        return fetch('http://52.79.172.190:8080/dashboard')
+            .then(res => {
+                return res.json();
+            })
+            .then(json => {
+                return json;
+            })
+            .then(err => err);
+    };
+
+    _getDashboard = async () => {
+        const data = await this._callDashboardApi();
+
+        this.setState({
+            countData: data[0].item,
+            tagData: data[1].item,
+            ratingData: data[2].item,
+            newReviews: data[3].item,
+            isLoaded: true,
+        });
+    };
+
     _renderReviews = (renderReviews) => {
+        debugger;
         const reviews = renderReviews.map((review) => {
             return <DetailReviewCard key={review.id}
                                      id={review.id}
@@ -26,64 +50,36 @@ export default class Dashboard extends React.Component {
                                      isReplied={review.is_replied}
                                      rating={review.rating}
                                      reply={review.reply}
-                                     tag={review.tags[0] ? review.tags[0].name : "중립"}
-                                     content={review.content}
+                                     tag={review.tags ? review.tags[0].name : "중립"}
                                      onReviewSelect={this.handleReviewSelect}/>
         });
 
         return reviews;
     };
 
-    _getDashboard = () => {
-        return fetch('http://52.79.172.190:8080/dashboard')
-            .then(res => {
-                debugger;
-                return res.json();
-            })
-            .then(json => {
-                debugger;
-                return json;
-            })
-            .then(err => err);
-    };
-
-    _getReviewList = async () => {
-        const reviews = await this._callReviewListApi();
-        this.setState({
-            reviews,
-            reviewCnt: reviews.length,
-            replyCnt: 0,
-        });
-    };
-
-    _callReviewListApi = () => {
-        return fetch('http://52.79.172.190:8080/reviews'
-        )
-            .then(response => response.json())
-            .then(reviewList => reviewList)
-            .catch(err => err);
-    };
-
     render() {
-        const {reviews} = this.state;
+        const {countData, ratingData, tagData, newReviews, isLoaded} = this.state;
+
         return (
             <div className="dashboard_container">
-                <div className="dashboard_content_container">
-                    <h2>New Reviews</h2>
-                    "최신 리뷰를 가져오는 중입니다!"
-                </div>
-                <div className="dashboard_content_container">
-                    <h2>Overview</h2>
+
+                <div className="dashboard_content_container gray">
                     <div className="row_align">
-                        <OverviewCard/>
+                        {countData ? <OverviewCard countData={countData}
+                                                   ratingData={ratingData}
+                                                   tagData={tagData}/> : "Loading"}
                     </div>
+                </div>
+
+                <div className="dashboard_content_container gray right_side">
+                    <h2>New Reviews</h2>
+                    {isLoaded ? this._renderReviews(newReviews) : "새로운 리뷰를 가져오는 중 입니다!"}
                 </div>
             </div>
         );
     }
 
     componentDidMount() {
-        this._getReviewList();
         this._getDashboard();
     }
 }

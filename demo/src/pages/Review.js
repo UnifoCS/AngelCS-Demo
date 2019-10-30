@@ -88,12 +88,24 @@ class Review extends React.Component {
             .catch(err => err);
     };
 
+    _callReviewCount = () => {
+        return fetch('http://52.79.172.190:8080/dashboard')
+            .then(res => {
+                return res.json();
+            })
+            .then(data=> {
+                return data[0].item;
+            })
+            .then(err => err);
+    };
+
     _getReviewList = async () => {
         const reviews = await this._callReviewListApi();
+        const counts = await this._callReviewCount();
         this.setState({
             reviews,
-            reviewCnt: reviews.length,
-            replyCnt: 0,
+            reviewCnt: counts.review_total_count,
+            replyCnt: counts.review_total_count-counts.review_replied_count,
         });
     };
 
@@ -190,6 +202,25 @@ class Review extends React.Component {
                 reply: selectedReview.reply,
             },
         }));
+
+        this._sendReply(targetId, value);
+
+    };
+
+    _sendReply = (id, data) => {
+        fetch(`http://52.79.172.190:8080/review/${id}/reply`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({reply: data})
+        })
+            .then(res => res.json())
+            .then(json=> {
+                console.log(json);
+                return json;
+            })
+            .catch(e=>e);
     };
 
     render() {
@@ -206,7 +237,7 @@ class Review extends React.Component {
                 },
             },
             {
-                menuItem: replyCnt?`답변완료 (${replyCnt}개)`:`답변완료 (0개)`,
+                menuItem: replyCnt?`답변완료 (${replyCnt}개)`:`답변완료`,
                 render: () => {
                     return (<div className="review_list_container">
                         {this.state.reviews ? this._renderRepliedReviews(true) : "리뷰를 가져오는 중입니다!"}
