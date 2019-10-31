@@ -15,7 +15,7 @@ export default class Sidebar extends React.Component {
                         <ul className="sidebar_menu">
                             <li><NavLink exact to="/" activeClassName="active_nav">Home</NavLink></li>
                             <li><NavLink to="/review" activeClassName="active_nav">Review Managing</NavLink></li>
-                            <li><a href="#">Template Setting</a></li>
+                            <li><NavLink to="/template" activeClassName="active_nav">Template Setting</NavLink></li>
                         </ul>
                     </nav>
                 </div>

@@ -202,7 +202,7 @@ class Review extends React.Component {
                 reply: selectedReview.reply,
             },
         }));
-
+    debugger;
         this._sendReply(targetId, value);
 
     };
@@ -248,7 +248,7 @@ class Review extends React.Component {
 
         return (
             <div className="review_page_container">
-                <Sidebar pageNum="1"></Sidebar>
+                <Sidebar></Sidebar>
                 <div className="review_man_container">
                     <div className="review_reply">
                         <h2>Reply</h2>

@@ -17,7 +17,7 @@ export default class ReplyCard extends React.Component {
         super(props);
         this.state = {
             reviewType: this.props.tag,
-            value: templates[this.props.tag],
+            value: this.props.isReplied?this.props.reply:templates[this.props.tag],
             isFiltered: this.props.isAggressive
         };
 
@@ -42,14 +42,14 @@ export default class ReplyCard extends React.Component {
          e.preventDefault();
          this.setState({
              reviewType: e.target.value,
-             value: templates[e.target.value],
+             value: templates[e.target.value].replace('[name]', this.props.author),
          });
      };
 
      componentWillReceiveProps(nextProps, nextContext) {
          this.setState({
              reviewType: nextProps.tag,
-             value: templates[nextProps.tag],
+             value: templates[nextProps.tag].replace('[name]', nextProps.author),
              isFiltered: nextProps.isAggressive
          });
      };
@@ -70,7 +70,7 @@ export default class ReplyCard extends React.Component {
         const {reviewType, isFiltered} = this.state;
         const {author, tag, title, content, isAggressive, isReplied, reply, rating} = this.props;
         const date = this.props.date.split('T');
-        const value = isReplied?reply:this.state.value.replace('[name]', author);
+        const value = this.state.value;
         const basicTagText = rating+"점";
 
         const ButtonGroup = () => (
@@ -81,7 +81,7 @@ export default class ReplyCard extends React.Component {
                                    key={tagList.indexOf(tag)}
                                    className={reviewType === tag?"tag_button_active":""}>
                         {tag}</Button>
-                })}
+                })}\
             </Button.Group>
         );
 

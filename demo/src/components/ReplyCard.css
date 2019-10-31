@@ -103,7 +103,7 @@
     height: 100%;
 }
 
-.reply_card_editor>.reply_editor>textarea {
+.reply_editor>textarea {
     resize: none;
     width: 100%;
     outline: none;

@@ -26,6 +26,10 @@
     padding : 5px;
 }
 
+.overview_card_container .VictoryContainer {
+    width: 0;
+}
+
 svg {
     width: 300px !important;
 }

@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@vx/group": "^0.0.192",
+    "@vx/mock-data": "^0.0.192",
+    "@vx/scale": "^0.0.192",
+    "@vx/shape": "^0.0.192",
     "immutability-helper": "^3.0.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -11,7 +15,8 @@
     "react-scripts": "3.1.2",
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
-    "semantic-ui-react": "^0.88.1"
+    "semantic-ui-react": "^0.88.1",
+    "victory": "^33.1.1"
   },
   "scripts": {
     "start": "cross-env NODE_PATH=src react-scripts start",

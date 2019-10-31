@@ -38,7 +38,6 @@ export default class Dashboard extends React.Component {
     };
 
     _renderReviews = (renderReviews) => {
-        debugger;
         const reviews = renderReviews.map((review) => {
             return <DetailReviewCard key={review.id}
                                      id={review.id}

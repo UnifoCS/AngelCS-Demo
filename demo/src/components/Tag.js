@@ -32,4 +32,15 @@ export function BasicTag(props) {
     );
 }
 
+export function BasicLongTag(props){
+    const text = props.text;
+
+
+    return (
+        <div className="tag_container basic_tag long">
+            {text}
+        </div>
+    )
+}
+
 export default Tag;
