@@ -1,6 +1,6 @@
 import React from 'react';
 import './OverviewCard.css';
-import {VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryPie} from 'victory';
+import {VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryPie, VictoryArea, VictoryPolarAxis} from 'victory';
 
 let countData = [
     {rating: 1,},
@@ -84,8 +84,28 @@ export default class OverviewCard extends React.Component {
                         </div>
                         <div className="overview_card_content">
                             <VictoryPie
-                                        labels={({datum}) => `${datum.x} : ${datum.y}개`}
-                                        data={tagData}/>
+                                labels={({datum}) => `${datum.x} : ${datum.y}개`}
+                                labelRadius={66}
+                                style={{ labels: { fill: "white", fontSize: 18} }}
+                                data={tagData} />
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="overview_card_container">
+                        <div className="overview_card_content">
+                            <VictoryChart polar theme={VictoryTheme.material}>
+                                <VictoryArea data={tagData}/>
+                                <VictoryPolarAxis/>
+                            </VictoryChart>
+                        </div>
+                    </div>
+                    <div className="overview_card_container">
+                        <div className="overview_card_content">
+                            <VictoryChart polar theme={VictoryTheme.material}>
+                                <VictoryArea data={tagData}/>
+                                <VictoryPolarAxis/>
+                            </VictoryChart>
                         </div>
                     </div>
                 </div>
