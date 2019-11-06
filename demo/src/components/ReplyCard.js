@@ -98,7 +98,7 @@ export default class ReplyCard extends React.Component {
                     <div className="reply_card_title">
                         {author}
                         <div className="reply_card_subtitle">
-                            구글 플레이 스토어 / {isReplied?'답변완료':'답변대기'} ・ {date[0]}
+                            구글플레이스토어 / {isReplied?'답변완료':'답변대기'} ・ {date[0]}
                         </div>
                     </div>
                     <div className="tag_list">

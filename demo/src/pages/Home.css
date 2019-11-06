@@ -2,3 +2,17 @@
     display: flex;
     flex-direction: row;
 }
+
+.dashboard_container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 45px;
+}
+
+.dashboard_content_container {
+}
+.dashboard_content_container:first-child {
+}
+.right_side {
+}
