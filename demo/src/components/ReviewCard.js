@@ -46,7 +46,7 @@ export class DetailReviewCard extends React.Component{
                 <div className="review_card_title">
                     {author}
                     <div className="review_card_subtitle">
-                        Amazon Review / {isReplied?'답변완료':'답변대기'} ・ {date[0]}
+                        구글 플레이 스토어 / {isReplied?'답변완료':'답변대기'} ・ {date[0]}
                    </div>
                 </div>
                 <div className="tag_list">
@@ -54,9 +54,6 @@ export class DetailReviewCard extends React.Component{
                     <BasicTag text={basicTagText}/>
                 </div>
                 <div className={isAggressive?"review_card_desc aggressive_review_card":"review_card_desc"}>
-                    <div className="review_card_desc_title">
-                        {title}
-                    </div>
                     {content}
                 </div>
             </div>

@@ -202,7 +202,6 @@ class Review extends React.Component {
                 reply: selectedReview.reply,
             },
         }));
-    debugger;
         this._sendReply(targetId, value);
 
     };

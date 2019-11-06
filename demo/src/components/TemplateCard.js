@@ -26,12 +26,52 @@ class TemplateCard extends React.Component {
         });
     };
 
+    _updateTemplate = (e) => {
+        const {value} = this.state;
+        fetch(`http://52.79.172.190:8080/template/${this.props.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: this.props.name,
+                content: value,
+                conditions: this.props.conditions
+            })
+        })
+            .then(res => res.json())
+            .then(json => {
+                return json;
+            })
+            .catch(e => e);
+
+        alert("수정된 리뷰가 추가되었습니다.");
+    };
+
+    _deleteTemplate = (e) => {
+        e.preventDefault();
+        fetch(`http://52.79.172.190:8080/template/${this.props.id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(json => {
+                return json;
+            })
+            .catch(e => e);
+        alert("삭제되었습니다.");
+    };
+
 
     render() {
+        console.log(this.props);
         const {value} = this.state;
-        const {name, id, content, conditions} = this.props;
-        const ratingCondition = `${conditions[0].operand1} ${conditions[0].operator} ${conditions[0].operand2}`;
-        const tagCondition = tagList[conditions[1].operand2];
+        const {name, id, conditions} = this.props;
+        const ratingCondition = conditions[0]?`${conditions[0].operand1} ${conditions[0].operator} ${conditions[0].operand2}`:"";
+        const tagCondition = conditions[1]?tagList[conditions[1].operand2]:"";
+
         return (
             <div className="template_card_container">
                 <div className="template_card_title">
@@ -46,8 +86,8 @@ class TemplateCard extends React.Component {
                         <textarea name="reply" value={value} onChange={this._handleChange}/>
                     </div>
                     <div className="right_align">
-                        <Button className="blue">수정</Button>
-                        <Button className="blue">삭제</Button>
+                        <Button className="blue" onClick={this._updateTemplate}>수정</Button>
+                        <Button className="blue" onClick={this._deleteTemplate}>삭제</Button>
                     </div>
                 </div>
             </div>

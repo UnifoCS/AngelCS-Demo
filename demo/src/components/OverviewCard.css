@@ -3,7 +3,7 @@
 }
 .overview_card_container {
     box-sizing: border-box;
-    margin: 15px 15px 15px 0;
+    margin: 15px 0;
     background-color: #FFF;
     padding: 25px;
     width: 100%;
@@ -11,6 +11,10 @@
     -webkit-box-shadow: 10px 10px 30px -15px rgba(143, 143, 143, 0.5);
     -moz-box-shadow: 10px 10px 30px -15px rgba(143, 143, 143, 0.5);
     box-shadow: 10px 10px 30px -15px rgba(143, 143, 143, 0.5);
+}
+
+.overview_card_container:not(:last-child) {
+    margin-right: 15px !important;
 }
 
 .row {

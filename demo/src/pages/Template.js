@@ -4,6 +4,7 @@ import Sidebar from "../components/Sidebar";
 import TemplateCard from  "../components/TemplateCard";
 import {Tab} from 'semantic-ui-react'
 import {DetailReviewCard} from "../components/ReviewCard";
+import TemplateCreator from "../components/TemplateCreator";
 
 
 export default class Template extends React.Component {
@@ -17,7 +18,9 @@ export default class Template extends React.Component {
         return fetch('http://52.79.172.190:8080/templates'
         )
             .then(response => response.json())
-            .then(data => data)
+            .then(data => {
+                return data;
+            })
             .catch(err => err);
     };
 
@@ -63,10 +66,10 @@ export default class Template extends React.Component {
                         <h2>Templates</h2>
                         <Tab menu={{secondary: true}} panes={panes}/>
                     </div>
-                    <div className="review_reply">
+                    <div className="template_creator_container">
                         <h2>Template Creator</h2>
+                        <TemplateCreator/>
                     </div>
-
                 </div>
             </div>
         )

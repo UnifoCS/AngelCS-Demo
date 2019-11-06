@@ -1,4 +1,4 @@
-.reply_card_container {
+.creator_container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -32,7 +32,7 @@
     font-size: 14px;
     color: #777;
     margin-left: 10px;
-    padding-top: 1px;
+    padding-top: 2px;
 }
 
 .reply_card_desc {

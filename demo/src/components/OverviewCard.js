@@ -83,8 +83,7 @@ export default class OverviewCard extends React.Component {
                             태그 별 리뷰 수
                         </div>
                         <div className="overview_card_content">
-                            <VictoryPie padAngle={({datum}) => datum.y}
-                                        innerRadius={100}
+                            <VictoryPie
                                         labels={({datum}) => `${datum.x} : ${datum.y}개`}
                                         data={tagData}/>
                         </div>

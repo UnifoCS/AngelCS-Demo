@@ -4,13 +4,20 @@ import {Tag, BasicTag} from "./Tag";
 import { Button } from 'semantic-ui-react'
 
 const templates = {
-    "긍정": "Thank you [name], We will keep doing our best :)",
-    "부정": "Sorry [name], We will try more for better service.",
-    "질문": "질문 템플릿",
-    "중립": "Thank you [name], We will keep doing our best :)",
+    "긍정": "[name]님 감사합니다.\n" +
+        "앞으로도 좋은 서비스 이어나가겠습니다.",
+    "부정": "[name]님 안녕하세요.\n" +
+        "서비스의 불만족스러운 부분을 개선하기위해 노력하겠습니다. 별점도 5점 주시면 저희가 개발하는데 힘이 날 것 같습니다.\n" +
+        "감사합니다.",
+    "문의": "[name]님 안녕하세요.\n" +"문의해주신 내용 접수하였습니다.",
+    "중립": "[name]님 감사합니다.\n" +
+        "소중한 리뷰 감사합니다.",
+    "공격": "[name]님 안녕하세요.\n" +
+        "서비스의 불만족스러운 부분을 개선하기위해 노력하겠습니다. 별점도 5점 주시면 저희가 개발하는데 힘이 날 것 같습니다.\n" +
+        "감사합니다.",
 };
 
-const tagList = ["긍정", "부정", "질문", "중립"];
+const tagList = ["긍정", "부정", "공격", "문의", "중립"];
 
 export default class ReplyCard extends React.Component {
     constructor(props) {
@@ -91,7 +98,7 @@ export default class ReplyCard extends React.Component {
                     <div className="reply_card_title">
                         {author}
                         <div className="reply_card_subtitle">
-                            Amazon Review / {isReplied?'답변완료':'답변대기'} ・ {date[0]}
+                            구글 플레이 스토어 / {isReplied?'답변완료':'답변대기'} ・ {date[0]}
                         </div>
                     </div>
                     <div className="tag_list">
@@ -100,9 +107,6 @@ export default class ReplyCard extends React.Component {
                     </div>
                     {isFiltered?this._renderAggressiveInfo():""}
                     <div className={isFiltered?"reply_card_desc filtered_review":"reply_card_desc"}>
-                        <div className="reply_card_desc_title">
-                            {title}
-                        </div>
                         {content}
                     </div>
                 </div>

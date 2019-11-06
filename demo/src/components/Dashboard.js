@@ -43,13 +43,13 @@ export default class Dashboard extends React.Component {
                                      id={review.id}
                                      selectedId={this.state.selectedId}
                                      author={review.author}
-                                     title={review.title}
+                                     content={review.content}
                                      date={review.created_date}
                                      isAggressive={review.is_aggressive}
                                      isReplied={review.is_replied}
                                      rating={review.rating}
                                      reply={review.reply}
-                                     tag={review.tags ? review.tags[0].name : "중립"}
+                                     tag={review.tags[0] ? review.tags[0].name : "중립"}
                                      onReviewSelect={this.handleReviewSelect}/>
         });
 
