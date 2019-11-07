@@ -47,7 +47,6 @@ class Review extends React.Component {
             );
         }
         let reviews = this.state.reviews.filter((review) => review.is_replied === isReplied);
-
         return this._renderReviews(reviews);
     };
 

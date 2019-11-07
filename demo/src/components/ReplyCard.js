@@ -10,7 +10,7 @@ const templates = {
         "서비스의 불만족스러운 부분을 개선하기위해 노력하겠습니다. 별점도 5점 주시면 저희가 개발하는데 힘이 날 것 같습니다.\n" +
         "감사합니다.",
     "문의": "[name]님 안녕하세요.\n" +"문의해주신 내용 접수하였습니다.",
-    "중립": "[name]님 감사합니다.\n" +
+    "중립": "[name]님 안녕하세요.\n" +
         "소중한 리뷰 감사합니다.",
     "공격": "[name]님 안녕하세요.\n" +
         "서비스의 불만족스러운 부분을 개선하기위해 노력하겠습니다. 별점도 5점 주시면 저희가 개발하는데 힘이 날 것 같습니다.\n" +
@@ -22,9 +22,10 @@ const tagList = ["긍정", "부정", "공격", "문의", "중립"];
 export default class ReplyCard extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             reviewType: this.props.tag,
-            value: this.props.isReplied?this.props.reply:templates[this.props.tag],
+            value: templates[this.props.tag],
             isFiltered: this.props.isAggressive
         };
 
@@ -56,7 +57,7 @@ export default class ReplyCard extends React.Component {
      componentWillReceiveProps(nextProps, nextContext) {
          this.setState({
              reviewType: nextProps.tag,
-             value: templates[nextProps.tag].replace('[name]', nextProps.author),
+             value: nextProps.isReplied?nextProps.reply:templates[nextProps.tag].replace('[name]', nextProps.author),
              isFiltered: nextProps.isAggressive
          });
      };
@@ -79,6 +80,8 @@ export default class ReplyCard extends React.Component {
         const date = this.props.date.split('T');
         const value = this.state.value;
         const basicTagText = rating+"점";
+
+        debugger;
 
         const ButtonGroup = () => (
             <Button.Group>

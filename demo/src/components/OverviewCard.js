@@ -38,6 +38,8 @@ export default class OverviewCard extends React.Component {
             return tagObj;
         });
 
+        debugger;
+
         return (
             <div className="overview_container">
                 <div className="overview_card_container">
@@ -79,6 +81,18 @@ export default class OverviewCard extends React.Component {
                         </div>
                     </div>
                     <div className="overview_card_container">
+                        <div className="overview_card_content">
+                            <VictoryChart polar theme={VictoryTheme.material}>
+                                <VictoryArea data={ratingCountData}
+                                             x="rating"
+                                             y="count"/>
+                                <VictoryPolarAxis/>
+                            </VictoryChart>
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="overview_card_container">
                         <div className="overview_card_title">
                             태그 별 리뷰 수
                         </div>
@@ -88,16 +102,6 @@ export default class OverviewCard extends React.Component {
                                 labelRadius={66}
                                 style={{ labels: { fill: "white", fontSize: 18} }}
                                 data={tagData} />
-                        </div>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="overview_card_container">
-                        <div className="overview_card_content">
-                            <VictoryChart polar theme={VictoryTheme.material}>
-                                <VictoryArea data={tagData}/>
-                                <VictoryPolarAxis/>
-                            </VictoryChart>
                         </div>
                     </div>
                     <div className="overview_card_container">

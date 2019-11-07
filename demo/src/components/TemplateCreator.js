@@ -132,11 +132,12 @@ export default class TemplateCreator extends React.Component {
                                 />
                             </Form.Group>
                             <ButtonGroup/>
-                            <Form.Group widths='equal'>
+                            <Form.Group>
                                 <RatingButtonGroup/>
                                 <ScoreButtonGroup/>
                             </Form.Group>
                         </Form>
+                        <Form/>
                     </div>
                     <div className="reply_card_editor">
                         <div className="reply_editor">
