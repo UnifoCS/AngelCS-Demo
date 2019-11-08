@@ -205,7 +205,6 @@ class Review extends React.Component {
                 isAggressive: selectedReview.is_aggressive,
                 isReplied: selectedReview.is_replied,
                 reply: selectedReview.reply,
-                recommendTemplate: selectedReview.recommended_templates[0].content
             },
         }));
         this._sendReply(targetId, value);

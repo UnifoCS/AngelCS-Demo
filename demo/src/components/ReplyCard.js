@@ -54,10 +54,22 @@ export default class ReplyCard extends React.Component {
          });
      };
 
-     componentWillReceiveProps(nextProps, nextContext) {
+    _callReviewDetailApi = (id) => {
+        const url = `http://52.79.172.190:8080/review/${id}`;
+        return fetch(url)
+            .then(response => response.json())
+            .then(review => {
+                return review;
+            })
+            .catch(err => err);
+    };
+
+     async componentWillReceiveProps(nextProps, nextContext) {
+         const reviewDetail = await this._callReviewDetailApi(nextProps.id);
+         debugger;
          this.setState({
              reviewType: nextProps.tag,
-             value: nextProps.isReplied?nextProps.reply:nextProps.recomTem.replace('[name]', nextProps.author),
+             value: nextProps.isReplied?nextProps.reply:reviewDetail.recommended_templates[0].content.replace('[name]', nextProps.author),
              isFiltered: nextProps.isAggressive
          });
      };
