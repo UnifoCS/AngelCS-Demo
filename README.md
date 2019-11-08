@@ -36,8 +36,10 @@
 <br />
 <br />
 
-**Resources**<br/>
-  [AngelCS API Document](https://github.com/UnifoCS/AngelCS-backend/blob/master/README.md)<br/>
+**Resources**
+
+  [AngelCS README](https://github.com/UnifoCS/AngelCS-backend/blob/master/README.md)<br/>
+  [AngelCS API Document](https://github.com/UnifoCS/AngelCS-backend/blob/master/doc/api_docs.md)<br/>
   [AngelCS Code GuideLine](https://github.com/UnifoCS/AngelCS-backend/blob/master/doc/code_structure.md)
 
 
