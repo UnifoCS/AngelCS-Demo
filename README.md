@@ -36,21 +36,16 @@
 <br />
 <br />
 
-**components**
-  - `Home` &mdash; routed page component for home.
-  - `Review` &mdash; routed page component for review management.
-  - `ReviewCard` &mdash; display a review. onClick: props are pushed to `ReplyCard`.
-  - `ReplyCard` &mdash; display a review and reply editor.
-  - `Tag` &mdash; get text classified review type. recommend the reply template.
-  - `Sidebar` &mdash; navigator.
+**Resources**
+  - [AngelCS API Document](https://github.com/UnifoCS/AngelCS-backend/blob/master/README.md)
+  - [AngelCS Code GuideLine](https://github.com/UnifoCS/AngelCS-backend/blob/master/doc/code_structure.md)
   
 <br />
 <br />
 <br />
 
-**Synchronize `replyCard` with `reviewCard`**
-  - update `reviewCard` : push `props` to `handleReviewSelect`, update `state.replyCard`.
-  - update `replyCard` : push `state` to `handleReviewReply`, update `state.replyCard`.
+**Licensing**
+  MIT License.
 
 <br />
 <br />
