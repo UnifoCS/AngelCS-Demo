@@ -37,14 +37,12 @@
 <br />
 
 **Resources**
-  - [AngelCS API Document](https://github.com/UnifoCS/AngelCS-backend/blob/master/README.md)
-  - [AngelCS Code GuideLine](https://github.com/UnifoCS/AngelCS-backend/blob/master/doc/code_structure.md)
-  
-<br />
-<br />
-<br />
+  [AngelCS API Document](https://github.com/UnifoCS/AngelCS-backend/blob/master/README.md)
+  [AngelCS Code GuideLine](https://github.com/UnifoCS/AngelCS-backend/blob/master/doc/code_structure.md)
+
 
 **Licensing**
+
   MIT License.
 
 <br />
