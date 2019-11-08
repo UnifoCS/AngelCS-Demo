@@ -2,7 +2,7 @@ import React from 'react';
 import Sidebar from '../components/Sidebar';
 import './Home.css';
 import OverviewCard from "../components/OverviewCard";
-import {DetailReviewCard} from "../components/ReviewCard";
+import {ReviewCard} from "../components/ReviewCard";
 
 class Home extends React.Component{
     constructor(props) {
@@ -39,7 +39,7 @@ class Home extends React.Component{
 
     _renderReviews = (renderReviews) => {
         const reviews = renderReviews.map((review) => {
-            return <DetailReviewCard key={review.id}
+            return <ReviewCard key={review.id}
                                      id={review.id}
                                      selectedId={this.state.selectedId}
                                      author={review.author}
@@ -49,8 +49,7 @@ class Home extends React.Component{
                                      isReplied={review.is_replied}
                                      rating={review.rating}
                                      reply={review.reply}
-                                     tag={review.tags[0] ? review.tags[0].name : "중립"}
-                                     onReviewSelect={this.handleReviewSelect}/>
+                                     tag={review.tags[0] ? review.tags[0].name : "중립"}/>
         });
 
         return reviews;

@@ -66,7 +66,7 @@ export default class TemplateCreator extends React.Component {
                 content: value,
                 conditions: {
                     tags: [Number(tagValue)],
-                    ratings: ratingValue.concat(scoreValue)
+                    rating: ratingValue.concat(scoreValue)
                 }
             })
         })

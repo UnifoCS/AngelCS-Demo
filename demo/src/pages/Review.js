@@ -20,6 +20,7 @@ class Review extends React.Component {
 
     _renderReviews = (renderReviews) => {
         const reviews = renderReviews.map((review) => {
+            const tagName = review.tags[0] ? review.tags[0].name : "중립";
             return <DetailReviewCard key={review.id}
                                      id={review.id}
                                      selectedId={this.state.selectedId}
@@ -30,7 +31,7 @@ class Review extends React.Component {
                                      isReplied={review.is_replied}
                                      rating={review.rating}
                                      reply={review.reply}
-                                     tag={review.tags[0] ? review.tags[0].name : "중립"}
+                                     tag={review.is_aggressive ? "부정" : tagName} //backside에서 해결되면 tagName으로 수정
                                      content={review.content}
                                      onReviewSelect={this.handleReviewSelect}/>
         });
@@ -125,7 +126,7 @@ class Review extends React.Component {
                 reply: review.reply,
                 rating: review.rating,
             },
-            tag: reviewTag,
+            tag: review.is_aggressive?"부정":reviewTag, //back-side에서 해결되면 reviewTag로 수정
             isLoaded: true,
         });
     };
