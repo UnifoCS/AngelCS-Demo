@@ -66,7 +66,6 @@ class TemplateCard extends React.Component {
 
 
     render() {
-        console.log(this.props);
         const {value} = this.state;
         const {name, id, conditions} = this.props;
         const ratingCondition = conditions[0]?`${conditions[0].operand1} ${conditions[0].operator} ${conditions[0].operand2}`:"";

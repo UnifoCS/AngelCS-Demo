@@ -3,8 +3,8 @@ import {Tag, BasicTag} from './Tag';
 import './ReviewCard.css';
 
 export function ReviewCard(props) {
-    const tagName = props.tag;
-    const {author, id, selectedId, title, rating, isAggressive, isReplied, tag, content} = props;
+    const {author, id, selectedId, title, rating, isAggressive, isReplied, content} = props;
+    const tagName = isAggressive? "부정" : props.tag;
     const date = props.date.split('T');
     const basicTagText = rating + "점";
 
@@ -19,7 +19,7 @@ export function ReviewCard(props) {
                     </div>
                 </div>
                 <div className="tag_list">
-                    <Tag name={tag}/>
+                    <Tag name={tagName}/>
                     <BasicTag text={basicTagText}/>
                 </div>
                 <div className={isAggressive ? "review_card_desc aggressive_review_card" : "review_card_desc"}>

@@ -22,7 +22,7 @@ export default class Sidebar extends React.Component {
                 <nav className="sidebar_nav">
                     <p className="sidebar_nav_title">Opensource</p>
                     <ul className="sidebar_menu">
-                        <li><a href="#">Contribute</a></li>
+                        <li><a href="https://github.com/UnifoCS/AngelCS-Demo">Contribute</a></li>
                         <li><a href="https://github.com/UnifoCS/AngelCS-Demo" target="_blank">Github</a></li>
                     </ul>
                 </nav>

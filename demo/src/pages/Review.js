@@ -52,7 +52,7 @@ class Review extends React.Component {
     };
 
     _renderReplyCard = () => {
-        const {id, author, title, content, date, isAggressive, isReplied, reply, rating} = this.state.replyCard;
+        const {id, author, title, content, date, isAggressive, isReplied, reply, rating, recommendTemplate} = this.state.replyCard;
         const tag = this.state.tag;
 
         return (
@@ -66,6 +66,7 @@ class Review extends React.Component {
                        isReplied={isReplied}
                        reply={reply}
                        rating={rating}
+                       recomTem={recommendTemplate}
                        onReviewReply={this.handleReviewReply}/>
         );
     };
@@ -109,10 +110,10 @@ class Review extends React.Component {
         });
     };
 
-    //legacy
     //replyCard state update. **dependency with reply panel**
     _getReviewDetail = async () => {
         const review = await this._callReviewDetailApi(this.state.selectedId);
+
         const reviewTag = review.tags ? review.tags[0].name : "중립";
         this.setState({
             replyCard: {
@@ -125,13 +126,16 @@ class Review extends React.Component {
                 isReplied: review.is_replied,
                 reply: review.reply,
                 rating: review.rating,
+                recommendTemplate: review.recommended_templates[0].content
             },
             tag: review.is_aggressive?"부정":reviewTag, //back-side에서 해결되면 reviewTag로 수정
             isLoaded: true,
         });
     };
 
-    handleReviewSelect = (review) => {
+    handleReviewSelect = async (review) => {
+        const reviewDetail = await this._callReviewDetailApi(review.id);
+
         this.setState({
             replyCard: {
                 id: review.id,
@@ -143,6 +147,7 @@ class Review extends React.Component {
                 isAggressive: review.isAggressive,
                 isReplied: review.isReplied,
                 reply: review.reply,
+                recommendTemplate: reviewDetail.recommended_templates[0].content,
             },
             tag: review.tag,
             selectedId: review.id
@@ -200,6 +205,7 @@ class Review extends React.Component {
                 isAggressive: selectedReview.is_aggressive,
                 isReplied: selectedReview.is_replied,
                 reply: selectedReview.reply,
+                recommendTemplate: selectedReview.recommended_templates[0].content
             },
         }));
         this._sendReply(targetId, value);
